@@ -95,7 +95,6 @@ def create_app(test_config=None):
       'success': True,
       'questions':current_questions,
       'total_questions': len(selection),
-      #'current_category': selection.category.type,
       'categories' : all_categories
       
     })
@@ -261,12 +260,12 @@ def create_app(test_config=None):
     try:
     
       body= request.get_json()
-
       previous_questions = body.get('previous_questions', None)
       quiz_category = body.get('quiz_category', None)
       
-      if quiz_category is None:
+      if ((quiz_category is None) or (previous_questions is None)):
         abort(400)
+         
 
       questions = []
       if quiz_category["id"] == 0 :
