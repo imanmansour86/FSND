@@ -155,13 +155,6 @@ class TriviaTestCase(unittest.TestCase):
          # check that question returned is not on previous q list
         self.assertNotEqual(data['question']['id'], 6)
         
-    # def test_404_play_quiz_fail(self):
-    #     res = self.client().post('/quizzes',json={'previous_questions': [6]})
-    #     data = json.loads(res.data)
-        
-    #     self.assertEqual(res.status_code,404)
-    #     self.assertEqual(data['success'], False)
-    #     self.assertEqual(data['message'], 'bad request') 
        
     def test_500_play_quiz_fail(self):
         res = self.client().post('/quizzes')
