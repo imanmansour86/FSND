@@ -99,8 +99,6 @@ def create_app(test_config=None):
       
     })
   
-  
-
   '''
   @TODO: 
   Create an endpoint to DELETE question using a question ID. 
@@ -132,7 +130,6 @@ def create_app(test_config=None):
         
     except:
       abort(422)
-  
   
 
   '''
@@ -196,7 +193,6 @@ def create_app(test_config=None):
       except:
         abort(422)
     
-  
 
   '''
   @TODO: 
