@@ -87,9 +87,134 @@ GET '/categories'
 '5' : "Entertainment",
 '6' : "Sports"}
 
-```
+
+GET '/questions'
+- Fetches a paginated dictionary of questions of all available categories
+- Request Arguments: None
+- Example response:
+{
+  "categories": {
+    "1": "Science", 
+    "2": "Art", 
+    "3": "Geography", 
+    "4": "History", 
+    "5": "Entertainment", 
+    "6": "Sports"
+  }, 
+  "questions": [
+    {
+      "answer": "Edward Scissorhands", 
+      "category": 5, 
+      "difficulty": 3, 
+      "id": 6, 
+      "question": "What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?"
+    }, 
+    "success": true, 
+    "total_questions": 59
+}
+
+DELETE '/questions/<int:question_id>'
+- Deletes existing question from the questions list.
+- Request Arguments: <int:question_id>
+- Example response:
+{
+        "deleted": 6,
+        "success": true,
+        "total_questions": 58
+    }
+       
+
+POST '/questions' 
+This API has two functions: 1- Adds a new question to the repository and 2- Fetches all questions using a searchTerm.
+1- 
+- Add a new question to the repository of available questions
+- Request Arguments:{question:string,answer:string, difficulty:int, category:string}
+- Example response: 
+{
+        "answer": "Test answer",
+        "category": null,
+        "difficulty": 2,
+        "question": "Test question",
+        "success": true
+}
+2- 
+- Fetches all questions where a substring matches the search term
+-  Request Arguments: {searchTerm:string}
+-  Example response: 
+{
+    "current_category": "",
+    "questions": [
+        {
+            "answer": "23",
+            "category": 1,
+            "difficulty": 1,
+            "id": 32,
+            "question": "test"
+        },
+        {
+            "answer": "Test answer",
+            "category": null,
+            "difficulty": 2,
+            "id": 69,
+            "question": "Test question"
+        }
+    ],
+        "success": true,
+        "total_questions": 59
+}
 
 
+GET '/categories/<int:type_id>/questions'
+-  Fetches questions based on category
+-  Request Arguments: <int:type_id>
+-  Example response: 
+{
+    "current_category": {
+            "id": 4,
+            "type": "History"
+        },
+    "questions": [
+        {
+            "answer": "Muhammad Ali",
+            "category": 4,
+            "difficulty": 1,
+            "id": 9,
+            "question": "What boxer's original name is Cassius Clay?"
+        },
+        {
+            "answer": "George Washington Carver",
+            "category": 4,
+            "difficulty": 2,
+            "id": 12,
+            "question": "Who invented Peanut Butter?"
+        },
+        {
+            "answer": "Scarab",
+            "category": 4,
+            "difficulty": 4,
+            "id": 23,
+            "question": "Which dung beetle was worshipped by the ancient Egyptians?"
+        }
+    ],
+    "success": true,
+    "total_questions": 3
+}
+
+
+POST '/quizzes
+-  Fetches a random question within a given category.Previously asked questions are not asked again.
+-  Example response: 
+{
+    "question": {
+            "answer": "Escher",
+            "category": 2,
+            "difficulty": 1,
+            "id": 16,
+            "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        },
+        "success": true
+}
+  ```
 ## Testing
 To run the tests, run
 ```
