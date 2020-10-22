@@ -268,7 +268,7 @@ def create_app(test_config=None):
         questions = Question.query.filter(Question.id.notin_(previous_questions)).all()
         
       else:
-        questions= Question.query.filter(Question.category == quiz_category["id"]).filter(Question.id.notin_(previous_questions)).all()
+        questions = Question.query.filter(Question.category == quiz_category["id"]).filter(Question.id.notin_(previous_questions)).all()
       
       random_question = None
       if len(questions) != 0:

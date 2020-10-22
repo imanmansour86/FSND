@@ -24,10 +24,6 @@ class TriviaTestCase(unittest.TestCase):
             self.db.init_app(self.app)
             # create all tables
             self.db.create_all()
-            
-        # self.new_category = {
-        #     'type': 'Test Category'
-        # }
         
         self.new_question = {
             'question': 'test',
@@ -116,7 +112,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 405)
         
     def test_search_question_with_results(self):
-        res = self.client().post('/questions', json={'searchTerm': 'new'})
+        res = self.client().post('/questions', json={'searchTerm': 'what'})
         data = json.loads(res.data)
        
         self.assertEqual(res.status_code, 200)
