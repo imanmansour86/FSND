@@ -38,7 +38,7 @@ def get_drinks():
         if len(all_drinks) == 0:
             abort(404, "no drinks found")
 
-        return jsonify({"success": True, "drinks": drinks}, 200)
+        return jsonify({"success": True, "drinks": drinks}), 200
 
     except Exception as e:
         abort(500, str(e))
@@ -64,7 +64,7 @@ def get_drinksdetail(payload):
         if len(all_drinks) == 0:
             abort(404, "no drinks found")
 
-        return jsonify({"success": True, "drinks": drinks}, 200)
+        return jsonify({"success": True, "drinks": drinks}), 200
 
     except Exception as e:
         abort(500, str(e))
@@ -95,7 +95,7 @@ def add_drink(payload):
         drink = Drink(title=title, recipe=recipe)
         drink.insert()
 
-        return jsonify({"success": True, "drinks": [drink.long()]})
+        return jsonify({"success": True, "drinks": [drink.long()]}), 200
 
     except Exception as e:
         abort(500, str(e))
@@ -119,22 +119,22 @@ def add_drink(payload):
 def post_drink(payload, id):
 
     body = request.get_json()
-    # try:
-    drink = Drink.query.filter(Drink.id == id).one_or_none()
-    if drink is None:
-        abort(404)
+    try:
+        drink = Drink.query.filter(Drink.id == id).one_or_none()
+        if drink is None:
+            abort(404)
 
-    if "title" in body:
-        drink.title = body.get("title")
+        if "title" in body:
+            drink.title = body.get("title")
 
-    if "recipe" in body:
-        drink.recipe = json.dumps(body("recipe"))
+        if "recipe" in body:
+            drink.recipe = json.dumps(body.get("recipe"))
 
-    drink.update()
+        drink.update()
 
-    return jsonify({"success": True, "drinks": [drink.long()]})
-    # except Exception as e:
-    #     abort(500, str(e))
+        return jsonify({"success": True, "drinks": [drink.long()]}), 200
+    except Exception as e:
+        abort(500, str(e))
 
 
 """
@@ -153,18 +153,16 @@ def post_drink(payload, id):
 @requires_auth("delete:drinks")
 def delete_drink(payload, id):
     body = request.get_json()
-    # try:
-    drink = Drink.query.filter(Drink.id == id).one_or_none()
-    if drink is None:
-        abort(404)
+    try:
+        drink = Drink.query.filter(Drink.id == id).one_or_none()
+        if drink is None:
+            abort(404)
 
-    drink.delete()
+        drink.delete()
 
-    return jsonify({"success": True, "delete": drink.id})
-    # except Exception as e:
-
-
-#     abort(500, str(e))
+        return jsonify({"success": True, "delete": drink.id}), 200
+    except Exception as e:
+        abort(500, str(e))
 
 
 ## Error Handling
