@@ -9,42 +9,6 @@
 			"name": "public",
 			"item": [
 				{
-					"name": "/drinks",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "822048ab-55fa-45da-83d7-f944afd3b4bb",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"value contains drinks array\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData.drinks).to.be.an('array')",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/drinks",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"drinks"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "/drinks-detail",
 					"event": [
 						{
@@ -76,12 +40,12 @@
 					"response": []
 				},
 				{
-					"name": "/drinks",
+					"name": "/drinks/1",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "689d77b0-14f5-487d-9988-3992bc07d450",
+								"id": "0af14840-e648-4f76-a51a-d04eabd82d45",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -92,15 +56,16 @@
 						}
 					],
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/drinks",
+							"raw": "{{host}}/drinks/1",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"drinks"
+								"drinks",
+								"1"
 							]
 						}
 					},
@@ -139,12 +104,48 @@
 					"response": []
 				},
 				{
-					"name": "/drinks/1",
+					"name": "/drinks",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "0af14840-e648-4f76-a51a-d04eabd82d45",
+								"id": "822048ab-55fa-45da-83d7-f944afd3b4bb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains drinks array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.drinks).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/drinks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"drinks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/drinks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "689d77b0-14f5-487d-9988-3992bc07d450",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -155,16 +156,15 @@
 						}
 					],
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/drinks/1",
+							"raw": "{{host}}/drinks",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"drinks",
-								"1"
+								"drinks"
 							]
 						}
 					},
@@ -354,7 +354,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjBNa0VZbG1yWUVJRlRZb2pNYS1IXyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlZS1zaG9wMTEudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVmOTliMzM3NzA5MjA4MDA2ZWFjNDVmNCIsImF1ZCI6ImNvZmZlZSIsImlhdCI6MTYwNDAyOTIzNSwiZXhwIjoxNjA0MDM2NDM1LCJhenAiOiJEWG14cVFCU3c4RlF0aDZKMm9JMlNETm9USDRTc3BDUyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRyaW5rcy1kZXRhaWwiXX0.RHscGMkt699cSZJBGBBEWNRS9qirD75pXl19j3aTDsUfEybfZY0GQ4fFkjegZbBYzfmAuE5uPNqELjs3Xl_Gq5x810XkFleo9bParvFYGAj_Op6kMJ9mEHYFMdj7mPUtMkjWOtZ_OXMpS_rshFhNIG42l4C07wuMN3btm5w8dbObXzd80oFqCjCLiiD1RAkLMb4cNmQnlHANiOIt37bYl8oX-dDOMNrEPSuhGKlwpWxFE_iobKUSGCkTLHkYVc_xDO3jP1kDNcY7IYQOeTFQI4inMvPnhl90c6r2gkVXuqReiKVj2aQJ16p54CO-9CRTgp1IMBIAZIrVhnKvJm36nw",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjBNa0VZbG1yWUVJRlRZb2pNYS1IXyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlZS1zaG9wMTEudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVmOTliMzM3NzA5MjA4MDA2ZWFjNDVmNCIsImF1ZCI6ImNvZmZlZSIsImlhdCI6MTYwNDA5MDY3NCwiZXhwIjoxNjA0MTc3MDc0LCJhenAiOiJEWG14cVFCU3c4RlF0aDZKMm9JMlNETm9USDRTc3BDUyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmRyaW5rcy1kZXRhaWwiXX0.ORgZj5CNumZlJk4OLqzxoQgnGubxQgRQ8TZSbgky34NBMQJVdF1UQhA9LHf3hQFarqQO4tcAFP380ZlwLGGXsZemEer8p6sz13KhoXqDOVAJbJrWjudL6WzxpvrUOb96Jk02tR3jZtk5yZuxHgWBmqwmXH4c_710cEz42Bx1shsTMmhFN51yx-NATRx6bNRZBxgGvHDPIV2fSfxkl605j-1hnkZno8qbCVzVFRXOxC5s4zKwt_wyT9zR-oKf6tPVeQQFYgg6X8pvgmKqXm3H5mpGa-vXviXNaarMAb2vMOG6IZSbJkpaJcQObcJXDJxgpmEjN98NQXJ85mvE3rXYAQ",
 						"type": "string"
 					}
 				]
@@ -586,7 +586,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjBNa0VZbG1yWUVJRlRZb2pNYS1IXyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlZS1zaG9wMTEudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVmOTliOTU5OTk1MTk3MDA2ODAxNTgzYSIsImF1ZCI6ImNvZmZlZSIsImlhdCI6MTYwNDAyODIwMywiZXhwIjoxNjA0MDM1NDAzLCJhenAiOiJEWG14cVFCU3c4RlF0aDZKMm9JMlNETm9USDRTc3BDUyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.o0f3mPVkSbAPJznVkMiMxQnpEX9CxNUplZhVhh242W97bzExsAChwYNgNybgy5I5RdSDnUnGedBDg9gyZkaCXZUWZLUkBlFQLoa7uXlTEBZo8nmcCT1TtxjRIMW-ycx1H2fx4hfokVecWDVARkn0sqVfCnoQhOjwhhdgc0OgXvVK4PXCUH7ifaV2NmHFOyww9hEPM6lkIJnJuMX0uGYuVf89iS_-9oXr2FrKpaQ85iMPW8BvQM6rTUi96XxvluUjSGPZZPj-G_f1V1NtzGRxDDjgTbsjAONv4VlYXDLTX6iq_oKQQHxOdXherXDM2wGUPbVTL9bOX27Djx9FPNqIcg",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjBNa0VZbG1yWUVJRlRZb2pNYS1IXyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlZS1zaG9wMTEudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVmOTliOTU5OTk1MTk3MDA2ODAxNTgzYSIsImF1ZCI6ImNvZmZlZSIsImlhdCI6MTYwNDA5MDYwMiwiZXhwIjoxNjA0MTc3MDAyLCJhenAiOiJEWG14cVFCU3c4RlF0aDZKMm9JMlNETm9USDRTc3BDUyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmRyaW5rcyIsImdldDpkcmlua3MtZGV0YWlsIiwicGF0Y2g6ZHJpbmtzIiwicG9zdDpkcmlua3MiXX0.Okx0kZfmwNElBLw0SW5IiMfnYBHbv8BOMALWFEE9du5TiqWZJdHfmK8fd8vYZDc5GHu8KwUVpCyvyNOGwE5-CYxLB-_nUbd1drfWuERs1YbFprhk31ifCFopko1ex3ci04QsHo2a8aUwY86VRPahZSFBorP5Z41pqNbp_kOk1qWH-0S3-Z6pdSk198KHGfxFsl3Y0XyCwFhWjDWSBirFVlt9gByu1y-YBjjeY8MuY4Tv3BJLVrm1yCCqftngLp4oY56tatvJodB1SbCX4Am60K12OIMRjQsvERbeBH9gwvyyebfKP4qaKuAEufXvICPsqgeuv7lWK6a292FF_a6DdA",
 						"type": "string"
 					}
 				]
