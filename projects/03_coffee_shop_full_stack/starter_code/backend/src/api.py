@@ -31,17 +31,14 @@ db_drop_and_create_all()
 
 @app.route("/drinks", methods=["GET"])
 def get_drinks():
-    try:
-        all_drinks = Drink.query.all()
-        drinks = [drink.short() for drink in all_drinks]
 
-        if len(all_drinks) == 0:
-            abort(404, "no drinks found")
+    all_drinks = Drink.query.all()
+    drinks = [drink.short() for drink in all_drinks]
 
-        return jsonify({"success": True, "drinks": drinks}), 200
+    if len(all_drinks) == 0:
+        abort(404, "no drinks found")
 
-    except Exception as e:
-        abort(500, str(e))
+    return jsonify({"success": True, "drinks": drinks}), 200
 
 
 """
@@ -57,17 +54,14 @@ def get_drinks():
 @app.route("/drinks-detail", methods=["GET"])
 @requires_auth("get:drinks-detail")
 def get_drinksdetail(payload):
-    try:
-        all_drinks = Drink.query.all()
-        drinks = [drink.long() for drink in all_drinks]
 
-        if len(all_drinks) == 0:
-            abort(404, "no drinks found")
+    all_drinks = Drink.query.all()
+    drinks = [drink.long() for drink in all_drinks]
 
-        return jsonify({"success": True, "drinks": drinks}), 200
+    if len(all_drinks) == 0:
+        abort(404, "no drinks found")
 
-    except Exception as e:
-        abort(500, str(e))
+    return jsonify({"success": True, "drinks": drinks}), 200
 
 
 """
