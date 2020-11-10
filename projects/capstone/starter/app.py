@@ -122,6 +122,87 @@ def create_app(test_config=None):
         actor.insert()
 
         return jsonify({"success": True, "actor": actor.format()})
+    
+    '''
+    PATCH /movies/<int:id>
+    Update movie with given id 
+    '''
+    @app.route("/movies//<int:id>", methods=["PATCH"])
+    def update_movie(id):
+        body = request.get_json()
+        
+        movie= Movie.query.filter(Movie.id == id).one_or_none()
+        if movie is None:
+            abort(404, "No movie with given id")
+            
+        if "title" in body:
+            movie.title = body.get('title')
+        if 'release_date' in body:
+            movie.release_date = body.get('release_date')
+        
+        movie.update()
+        
+        return jsonify({"success": True, "updated": movie.format()})
+    
+    
+    '''
+    PATCH /actors/<int:id>
+    Update actor with given id 
+    '''
+    @app.route("/actors//<int:id>", methods=["PATCH"])
+    def update_actor(id):
+        body = request.get_json()
+        
+        actor= Actor.query.filter(Actor.id == id).one_or_none()
+        if actor is None:
+            abort(404, "No actor with given id")
+            
+        if "name" in body:
+            actor.name = body.get('name')
+        if 'age' in body:
+            actor.age = body.get('age')
+        if 'gender' in body:
+            actor.gender = body.get('gender')
+        if 'movie_id' in body:
+             actor.movie_id = body.get('movie_id')
+        
+        actor.update()
+        
+        return jsonify({"success": True, "updated": actor.format()})
+    
+    """
+    Error Handling
+    Example error handling for unprocessable entity
+    """ 
+    
+    
+    @app.errorhandler(422)
+    def unprocessable(error):
+        return jsonify({"success": False, "error": 422, "message": "unprocessable"}), 422
+    
+    @app.errorhandler(401)
+    def unauthorized(error):
+        return (
+        jsonify({"success": False, "error": 401, "message": "unauthorized"}),
+        401,
+    )
+
+
+    @app.errorhandler(404)
+    def not_found(error):
+        return (
+        jsonify({"success": False, "error": 404, "message": "resource not found"}),
+        404,
+    )
+    
+    # @app.errorhandler(AuthError)
+    # def handle_auth_error(ex):
+
+    #     response = jsonify(ex.error)
+    #     response.status_code = ex.status_code
+    #     return response
+    
+    
 
     return app
 
