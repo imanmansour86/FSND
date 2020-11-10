@@ -35,7 +35,7 @@ class Movie(db.Model):
     id = Column(Integer, primary_key=True)
     title = Column(String)
     release_date = Column(DateTime)
-    actors = db.relationship("Actor", backref="movies", lazy=True)
+    actors = db.relationship("Actor", backref="movies", passive_deletes=True, lazy=True)
 
     def __init__(self, title, release_date):
         self.title = title
@@ -53,11 +53,12 @@ class Movie(db.Model):
         db.session.commit()
 
     def format(self):
+        actors = [actor.format() for actor in self.actors]
         return {
             "id": self.id,
             "title": self.title,
             "release_date": self.release_date,
-            "actors": self.actors,
+            "actors": actors,
         }
 
 
@@ -73,7 +74,9 @@ class Actor(db.Model):
     name = Column(String)
     age = Column(Integer)
     gender = Column(String)
-    movie_id = Column(Integer, ForeignKey("movies.id"), nullable=False)
+    movie_id = Column(
+        Integer, ForeignKey("movies.id", ondelete="CASCADE"), nullable=False
+    )
 
     def __init__(self, name, age, gender):
         self.name = name
