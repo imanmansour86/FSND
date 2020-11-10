@@ -110,8 +110,8 @@ def create_app(test_config=None):
     @app.route("/actors", methods=["POST"])
     def add_actor():
         body = request.get_json()
-        if body is None:
-            abort(400, "Missing field")
+        if "name" and "age" and 'gender' and 'movie_id' not in body:
+            abort(422, "Missing field")
 
         name = body.get("name")
         age = body.get("age")
@@ -121,7 +121,7 @@ def create_app(test_config=None):
         actor = Actor(name=name, age=age, gender=gender, movie_id=movie_id)
         actor.insert()
 
-        return jsonify({"success": True, "actor": actor})
+        return jsonify({"success": True, "actor": actor.format()})
 
     return app
 

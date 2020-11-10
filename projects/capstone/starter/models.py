@@ -78,7 +78,7 @@ class Actor(db.Model):
         Integer, ForeignKey("movies.id", ondelete="CASCADE"), nullable=False
     )
 
-    def __init__(self, name, age, gender):
+    def __init__(self, name, age, gender,movie_id ):
         self.name = name
         self.age = age
         self.gender = gender
