@@ -3,7 +3,7 @@ from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from models import setup_db, Movie, Actor
-
+from controllers.auth import AuthError, requires_auth
 
 def create_app(test_config=None):
     # create and configure the app
@@ -17,7 +17,7 @@ def create_app(test_config=None):
             "Access-Control-Allow-Headers", "Content-Type,Authorization,true"
         )
         response.headers.add(
-            "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS"
+            "Access-Control-Allow-Methods", "GET,PATCH,POST,DELETE,OPTIONS"
         )
         return response
 
@@ -27,7 +27,8 @@ def create_app(test_config=None):
     """
 
     @app.route("/movies", methods=["GET"])
-    def get_movies():
+    @requires_auth("view:movie")
+    def get_movies(payload):
 
         all_movies = Movie.query.all()
         movies = [movie.format() for movie in all_movies]
@@ -42,7 +43,8 @@ def create_app(test_config=None):
     """
 
     @app.route("/actors", methods=["GET"])
-    def get_actors():
+    @requires_auth("view:actor")
+    def get_actors(payload):
 
         all_actors = Actor.query.all()
         actors = [actor.format() for actor in all_actors]
@@ -57,7 +59,8 @@ def create_app(test_config=None):
     """
 
     @app.route("/movies/<int:id>", methods=["Delete"])
-    def delete_movies(id):
+    @requires_auth("delete:movie")
+    def delete_movies(payload,id):
 
         movie = Movie.query.filter(Movie.id == id).one_or_none()
         if movie is None:
@@ -73,7 +76,8 @@ def create_app(test_config=None):
     """
 
     @app.route("/actors/<int:id>", methods=["Delete"])
-    def delete_actors(id):
+    @requires_auth("delete:actor")
+    def delete_actors(payload,id):
 
         actor = Actor.query.filter(Actor.id == id).one_or_none()
         if actor is None:
@@ -89,7 +93,8 @@ def create_app(test_config=None):
     """
 
     @app.route("/movies", methods=["POST"])
-    def add_movie():
+    @requires_auth("post:movie")
+    def add_movie(payload):
         body = request.get_json()
         if "title" and "release_date" not in body:
             abort(422, "Missing field")
@@ -108,7 +113,8 @@ def create_app(test_config=None):
     """
 
     @app.route("/actors", methods=["POST"])
-    def add_actor():
+    @requires_auth("post:actor")
+    def add_actor(payload):
         body = request.get_json()
         if "name" and "age" and 'gender' and 'movie_id' not in body:
             abort(422, "Missing field")
@@ -128,7 +134,8 @@ def create_app(test_config=None):
     Update movie with given id 
     '''
     @app.route("/movies//<int:id>", methods=["PATCH"])
-    def update_movie(id):
+    @requires_auth("patch:movie")
+    def update_movie(payload,id):
         body = request.get_json()
         
         movie= Movie.query.filter(Movie.id == id).one_or_none()
@@ -150,7 +157,8 @@ def create_app(test_config=None):
     Update actor with given id 
     '''
     @app.route("/actors//<int:id>", methods=["PATCH"])
-    def update_actor(id):
+    @requires_auth("patch:actor")
+    def update_actor(payload,id):
         body = request.get_json()
         
         actor= Actor.query.filter(Actor.id == id).one_or_none()
@@ -195,12 +203,12 @@ def create_app(test_config=None):
         404,
     )
     
-    # @app.errorhandler(AuthError)
-    # def handle_auth_error(ex):
+    @app.errorhandler(AuthError)
+    def handle_auth_error(ex):
 
-    #     response = jsonify(ex.error)
-    #     response.status_code = ex.status_code
-    #     return response
+        response = jsonify(ex.error)
+        response.status_code = ex.status_code
+        return response
     
     
 
