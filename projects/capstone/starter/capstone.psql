@@ -1,0 +1,225 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.4
+-- Dumped by pg_dump version 12.4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: actors; Type: TABLE; Schema: public; Owner: iman
+--
+
+CREATE TABLE public.actors (
+    id integer NOT NULL,
+    name character varying,
+    age integer,
+    gender character varying,
+    movie_id integer NOT NULL
+);
+
+
+ALTER TABLE public.actors OWNER TO iman;
+
+--
+-- Name: actors_id_seq; Type: SEQUENCE; Schema: public; Owner: iman
+--
+
+CREATE SEQUENCE public.actors_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.actors_id_seq OWNER TO iman;
+
+--
+-- Name: actors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iman
+--
+
+ALTER SEQUENCE public.actors_id_seq OWNED BY public.actors.id;
+
+
+--
+-- Name: alembic_version; Type: TABLE; Schema: public; Owner: iman
+--
+
+CREATE TABLE public.alembic_version (
+    version_num character varying(32) NOT NULL
+);
+
+
+ALTER TABLE public.alembic_version OWNER TO iman;
+
+--
+-- Name: movies; Type: TABLE; Schema: public; Owner: iman
+--
+
+CREATE TABLE public.movies (
+    id integer NOT NULL,
+    title character varying,
+    release_date timestamp without time zone
+);
+
+
+ALTER TABLE public.movies OWNER TO iman;
+
+--
+-- Name: movies_id_seq; Type: SEQUENCE; Schema: public; Owner: iman
+--
+
+CREATE SEQUENCE public.movies_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.movies_id_seq OWNER TO iman;
+
+--
+-- Name: movies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iman
+--
+
+ALTER SEQUENCE public.movies_id_seq OWNED BY public.movies.id;
+
+
+--
+-- Name: actors id; Type: DEFAULT; Schema: public; Owner: iman
+--
+
+ALTER TABLE ONLY public.actors ALTER COLUMN id SET DEFAULT nextval('public.actors_id_seq'::regclass);
+
+
+--
+-- Name: movies id; Type: DEFAULT; Schema: public; Owner: iman
+--
+
+ALTER TABLE ONLY public.movies ALTER COLUMN id SET DEFAULT nextval('public.movies_id_seq'::regclass);
+
+
+--
+-- Data for Name: actors; Type: TABLE DATA; Schema: public; Owner: iman
+--
+
+COPY public.actors (id, name, age, gender, movie_id) FROM stdin;
+23	hh	2	f	17
+24	h	3	m	13
+25	ter	4	m	11
+26	rtr	5	f	12
+28	iman	34	female	20
+29	aya	7	female	19
+30	new person	200000020	female	21
+31	newactor postman	102	female	10
+32	newactor postman	102	female	10
+33	hello	24	female	10
+27	hello	22	female	20
+34	iman	33	female	20
+35	iman	33	female	20
+36	newactor postman	102	female	10
+39	test	34	female	17
+40	newactor postman	102	female	10
+41	newactor postman	102	female	10
+22	updated-newactor postman	102	female	10
+\.
+
+
+--
+-- Data for Name: alembic_version; Type: TABLE DATA; Schema: public; Owner: iman
+--
+
+COPY public.alembic_version (version_num) FROM stdin;
+b43cd00508ac
+\.
+
+
+--
+-- Data for Name: movies; Type: TABLE DATA; Schema: public; Owner: iman
+--
+
+COPY public.movies (id, title, release_date) FROM stdin;
+11	gf	2015-01-04 00:00:00
+12	d	2015-01-05 00:00:00
+16	t	2015-01-10 00:00:00
+17	h	2015-11-02 00:00:00
+18	testtitle	2015-01-01 00:00:00
+19	testtitle	2015-01-01 00:00:00
+20	patched title2	2020-01-20 00:00:00
+21	patched new movie	2020-01-20 00:00:00
+22	newpost	2022-01-02 00:00:00
+10	updated	2015-01-03 00:00:00
+13	new	2021-01-02 00:00:00
+23	newpost	2022-01-02 00:00:00
+24	newpost	2022-01-02 00:00:00
+25	newpost	2022-01-02 00:00:00
+\.
+
+
+--
+-- Name: actors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iman
+--
+
+SELECT pg_catalog.setval('public.actors_id_seq', 41, true);
+
+
+--
+-- Name: movies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iman
+--
+
+SELECT pg_catalog.setval('public.movies_id_seq', 25, true);
+
+
+--
+-- Name: actors actors_pkey; Type: CONSTRAINT; Schema: public; Owner: iman
+--
+
+ALTER TABLE ONLY public.actors
+    ADD CONSTRAINT actors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: alembic_version alembic_version_pkc; Type: CONSTRAINT; Schema: public; Owner: iman
+--
+
+ALTER TABLE ONLY public.alembic_version
+    ADD CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num);
+
+
+--
+-- Name: movies movies_pkey; Type: CONSTRAINT; Schema: public; Owner: iman
+--
+
+ALTER TABLE ONLY public.movies
+    ADD CONSTRAINT movies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: actors actors_movie_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: iman
+--
+
+ALTER TABLE ONLY public.actors
+    ADD CONSTRAINT actors_movie_id_fkey FOREIGN KEY (movie_id) REFERENCES public.movies(id) ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--

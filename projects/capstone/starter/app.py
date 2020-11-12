@@ -76,9 +76,9 @@ def create_app(test_config=None):
     """
 
     @app.route("/actors/<int:id>", methods=["Delete"])
-    @requires_auth("delete:actor")
+    @requires_auth("delete:actors")
     def delete_actors(payload,id):
-
+        print(payload)
         actor = Actor.query.filter(Actor.id == id).one_or_none()
         if actor is None:
             abort(404, "actor " + str(id) + " not found")

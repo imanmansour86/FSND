@@ -9,6 +9,11 @@ AUTH0_DOMAIN = "capstone-project1.us.auth0.com"
 ALGORITHMS = ["RS256"]
 API_AUDIENCE = "cast"
 
+'''
+https://capstone-project1.us.auth0.com/authorize?audience=cast&response_type=token&client_id=a4ZqMlAKmxWb2I81gUQqzCVbLc1iuu37&redirect_uri=http://localhost:8080/login-results
+'''
+
+
 ## AuthError Exception
 """
 AuthError Exception
@@ -90,7 +95,7 @@ def check_permissions(permission, payload):
             {"code": "invalid_claims", "description": "Permission not included in JWT"},
             400,
         )
-
+    print(payload)
     if permission not in payload["permissions"]:
         raise AuthError(
             {"code": "unauthorized", "description": "Permission not found"}, 401
