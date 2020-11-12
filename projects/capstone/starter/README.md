@@ -28,15 +28,15 @@ This will install all of the required packages we selected within the `requireme
 
 ##### Key Dependencies
 
-- [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
+- Flask (http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
 
-- [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py. 
+- SQLAlchemy (https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py. 
 
-- [Auth0] is the authentication and authorization system to handle users with different roles and permissions
+- Auth0 is the authentication and authorization system to handle users with different roles and permissions
 
-- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
+- Flask-CORS (https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
 
-- [Heroku] is the  cloud platform used for deployment
+- Heroku is the  cloud platform used for deployment
 
 ## Database Setup
 With Postgres running, restore a database using the capstone.psql file provided. From the backend folder in terminal run:
@@ -146,9 +146,9 @@ GET /movies
     }
 
 
-GET /movies
+GET /actors
 - Get all actors 
-- Require view:movies actors
+- Require view:actors
 - Return exmaple:
 
 
@@ -276,8 +276,12 @@ PATCH /actors/<int:id>
 API will return these error in case request fails:
 
 404: resource not found
+
 401: Unauthorized
+
 403: Forbidden
+
 404: Resource Not Found
+
 422: unprocessable
-500: Internal Server Error
+
