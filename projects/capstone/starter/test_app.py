@@ -27,6 +27,7 @@ class CapstoneTestCase(unittest.TestCase):
             # create all tables
             self.db.create_all()
 
+
         self.new_movie= {
             'title': 'testmovie',
             'release_date': '2023-1-2'
