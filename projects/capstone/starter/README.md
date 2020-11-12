@@ -32,7 +32,11 @@ This will install all of the required packages we selected within the `requireme
 
 - [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py. 
 
+- [Auth0] is the authentication and authorization system to handle users with different roles and permissions
+
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
+
+- [Heroku] is the  cloud platform used for deployment
 
 ## Database Setup
 With Postgres running, restore a database using the capstone.psql file provided. From the backend folder in terminal run:
