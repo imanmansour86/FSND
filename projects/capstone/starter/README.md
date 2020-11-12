@@ -63,6 +63,8 @@ ALGORITHMS = ["RS256"]
 
 API_AUDIENCE = "cast"
 
+Heroku url for API: https://capstone11.herokuapp.com 
+
 ## Roles
 
 Casting Assistant
