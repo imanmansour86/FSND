@@ -54,7 +54,9 @@ To login or set up an account, go to the following url:
 https://capstone-project1.us.auth0.com/authorize?audience=cast&response_type=token&client_id=a4ZqMlAKmxWb2I81gUQqzCVbLc1iuu37&redirect_uri=http://localhost:8080/login-results
 
 AUTH0_DOMAIN = "capstone-project1.us.auth0.com"
+
 ALGORITHMS = ["RS256"]
+
 API_AUDIENCE = "cast"
 
 ## Roles
@@ -115,25 +117,27 @@ GET /movies
 - Require view:movies permission
 - Return exmaple:
 
-{
-    "movies": [
+
         {
-            "actors": [
-                {
-                    "age": 5,
-                    "gender": "f",
-                    "id": 26,
-                    "movie_id": 12,
-                    "name": "rtr"
-                }
-            ],
-            "id": 12,
-            "release_date": "Mon, 05 Jan 2015 00:00:00 GMT",
-            "title": "d"
+        "movies": [
+
+            {
+                "actors": [
+                    {
+                        "age": 5,
+                        "gender": "f",
+                        "id": 26,
+                        "movie_id": 12,
+                        "name": "rtr"
                     }
-    ],
-    "success": "True"
-}
+                ],
+                "id": 12,
+                "release_date": "Mon, 05 Jan 2015 00:00:00 GMT",
+                "title": "d"
+                        }
+        ],
+        "success": "True"
+    }
 
 
 GET /movies
@@ -141,114 +145,125 @@ GET /movies
 - Require view:movies actors
 - Return exmaple:
 
-{
-    "actors": [
-        {
-            "age": 5,
-            "gender": "f",
-            "id": 26,
-            "movie_id": 12,
-            "name": "rtr"
-        }
 
-],
-    "success": "True"
-}
+        {
+        "actors": [
+
+            {
+                "age": 5,
+                "gender": "f",
+                "id": 26,
+                "movie_id": 12,
+                "name": "rtr"
+            }
+
+    ],
+        "success": "True"
+    }
 
 
 DELETE /movies/<int:id>
 - Deletes the movie with given id
 - Require delete:movies permission
 - Return exmaple:
-{
-    "deleted": 12,
-    "success": "True"
-}
+
+        {
+        "deleted": 12,
+        "success": "True"
+        }
 
 DELETE /actors/<int:id>
 - Deletes the actor with given id
 - Require delete:actors permission
 - Return exmaple:
-{
-    "deleted": 12,
-    "success": "True"
-}
+
+        {
+
+            "deleted": 12,
+            "success": "True"
+        }
 
 
 POST /movies
 - Create a new movie
 - Require post:movies permission
 - Return exmaple:
-{
-    "movie": {
-        "actors": [],
-        "id": 26,
-        "release_date": "Sun, 02 Jan 2022 00:00:00 GMT",
-        "title": "newpost"
-    },
-    "success": true
-}
+
+        {
+            "movie": {
+                "actors": [],
+                "id": 26,
+                "release_date": "Sun, 02 Jan 2022 00:00:00 GMT",
+                "title": "newpost"
+            },
+            "success": true
+        }
 
 POST /actors
 - Create a new actor
 - Require post:actor permission
 - Return exmaple:
-{
-    "actor": {
-        "age": 102,
-        "gender": "female",
-        "id": 43,
-        "movie_id": 10,
-        "name": "newactor postman"
-    },
-    "success": true
-}
+
+        {
+            "actor": {
+                "age": 102,
+                "gender": "female",
+                "id": 43,
+                "movie_id": 10,
+                "name": "newactor postman"
+            },
+            "success": true
+        }
 
 PATCH /movies/<int:id>
 - Update movie with given id 
 - Require patch:movie
 - Return exmaple:
-{
-    "success": true,
-    "updated": {
-        "actors": [
+
             {
-                "age": 102,
-                "gender": "female",
-                "id": 31,
-                "movie_id": 10,
-                "name": "newactor postman"
-            },
-            {
-                "age": 102,
-                "gender": "female",
-                "id": 36,
-                "movie_id": 10,
-                "name": "newactor postman"
-            },
-           
-        ],
-        "id": 10,
-        "release_date": "Sat, 03 Jan 2015 00:00:00 GMT",
-        "title": "updated"
-    }
-}
+
+            "success": true,
+            "updated": {
+                "actors": [
+                    {
+                        "age": 102,
+                        "gender": "female",
+                        "id": 31,
+                        "movie_id": 10,
+                        "name": "newactor postman"
+                    },
+                    {
+                        "age": 102,
+                        "gender": "female",
+                        "id": 36,
+                        "movie_id": 10,
+                        "name": "newactor postman"
+                    },
+                
+                ],
+                "id": 10,
+                "release_date": "Sat, 03 Jan 2015 00:00:00 GMT",
+                "title": "updated"
+            }
+        }
 
 
 PATCH /actors/<int:id>
 - Update actor with given id 
 - Require patch:actor
 - Return exmaple:
-{
-    "success": true,
-    "updated": {
-        "age": 102,
-        "gender": "female",
-        "id": 22,
-        "movie_id": 10,
-        "name": "updated-newactor postman"
-    }
-}
+
+        {
+
+        "success": true,
+        "updated": {
+            "age": 102,
+            "gender": "female",
+            "id": 22,
+            "movie_id": 10,
+            "name": "updated-newactor postman"
+          }
+        }
 
 ## Error Handling
 
