@@ -6,7 +6,7 @@ import json
 
 # database_name = "capstone"
 # database_path = "postgres://{}/{}".format("localhost:5432", database_name)
-database_path = os.environ['DATABASE_URL']
+database_path = os.environ["DATABASE_URL"]
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -79,7 +79,7 @@ class Actor(db.Model):
         Integer, ForeignKey("movies.id", ondelete="CASCADE"), nullable=False
     )
 
-    def __init__(self, name, age, gender,movie_id ):
+    def __init__(self, name, age, gender, movie_id):
         self.name = name
         self.age = age
         self.gender = gender
