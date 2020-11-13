@@ -63,7 +63,7 @@ ALGORITHMS = ["RS256"]
 
 API_AUDIENCE = "cast"
 
-Heroku url for API: https://capstone11.herokuapp.com 
+Heroku url for API: https://capstone11.herokuapp.com
 
 ## Roles
 
@@ -104,8 +104,11 @@ From within the `starter` directory first ensure you are working using your crea
 To run the server, execute:
 
 ```bash
+
+export DATABASE_URL="postgres://localhost:5432/capstone"
 export FLASK_APP=app.py
-export FLASK_ENV=development
+export FLASK_DEBUG=True
+export FLASK_ENVIRONMENT=debug
 flask run
 ```
 
