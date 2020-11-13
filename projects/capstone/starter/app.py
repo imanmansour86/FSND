@@ -10,7 +10,8 @@ def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
     setup_db(app)
-    cors = CORS(app, resources={"/*": {"origins": "*", "supports_credentials": True}})
+    cors = CORS(app, resources={"/*": {"origins": "*",
+                                       "supports_credentials": True}})
 
     @app.after_request
     def after_request(response):
@@ -24,7 +25,7 @@ def create_app(test_config=None):
 
     """
     GET /movies
-    Get all movies 
+    Get all movies
     """
 
     @app.route("/movies", methods=["GET"])
@@ -40,7 +41,7 @@ def create_app(test_config=None):
 
     """
     GET /actors
-    Get all actors 
+    Get all actors
     """
 
     @app.route("/actors", methods=["GET"])
@@ -124,7 +125,6 @@ def create_app(test_config=None):
         age = body.get("age")
         gender = body.get("gender")
         movie_id = body.get("movie_id")
-
         actor = Actor(name=name, age=age, gender=gender, movie_id=movie_id)
         actor.insert()
 
@@ -132,7 +132,7 @@ def create_app(test_config=None):
 
     """
     PATCH /movies/<int:id>
-    Update movie with given id 
+    Update movie with given id
     """
 
     @app.route("/movies//<int:id>", methods=["PATCH"])
@@ -155,7 +155,7 @@ def create_app(test_config=None):
 
     """
     PATCH /actors/<int:id>
-    Update actor with given id 
+    Update actor with given id
     """
 
     @app.route("/actors//<int:id>", methods=["PATCH"])
@@ -188,23 +188,23 @@ def create_app(test_config=None):
     @app.errorhandler(422)
     def unprocessable(error):
         return (
-            jsonify({"success": False, "error": 422, "message": "unprocessable"}),
+            jsonify({"success": False, "error":
+                     422, "message": "unprocessable"}),
             422,
         )
 
     @app.errorhandler(401)
     def unauthorized(error):
         return (
-            jsonify({"success": False, "error": 401, "message": "unauthorized"}),
+            jsonify({"success": False, "error": 401,
+                     "message": "unauthorized"}),
             401,
         )
 
     @app.errorhandler(404)
     def not_found(error):
-        return (
-            jsonify({"success": False, "error": 404, "message": "resource not found"}),
-            404,
-        )
+        return (jsonify({"success": False, "error": 404,
+                         "message": "resource not found"}), 404, )
 
     @app.errorhandler(AuthError)
     def handle_auth_error(ex):

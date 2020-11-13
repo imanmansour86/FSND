@@ -295,8 +295,10 @@ class CapstoneTestCase(unittest.TestCase):
         new_title = "test1"
 
         res = self.client().patch(
-            f"/movies/{str(id)}", json={"title": new_title}, headers=auth_header
-        )
+            f"/movies/{str(id)}",
+            json={
+                "title": new_title},
+            headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data["success"])
@@ -322,8 +324,10 @@ class CapstoneTestCase(unittest.TestCase):
         new_title = "test1"
 
         res = self.client().patch(
-            f"/movies/{str(id)}", json={"title": new_title}, headers=auth_header
-        )
+            f"/movies/{str(id)}",
+            json={
+                "title": new_title},
+            headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data["success"])
