@@ -8,3 +8,7 @@ export DATABASE_URL="postgres://zrqvaxnkdeutqv:4eef4c908628413b708346232ef18747d
 export FLASK_APP=app.py
 export FLASK_DEBUG=True
 export FLASK_ENVIRONMENT=debug
+
+export AUTH0_DOMAIN = "capstone-project1.us.auth0.com"
+export ALGORITHMS = ["RS256"]
+export API_AUDIENCE = "cast"
