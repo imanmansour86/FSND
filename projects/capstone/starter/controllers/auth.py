@@ -9,6 +9,10 @@ AUTH0_DOMAIN = os.environ["AUTH0_DOMAIN"]
 ALGORITHMS = os.environ["ALGORITHMS"]
 API_AUDIENCE = os.environ["API_AUDIENCE"]
 
+casting_assistant = os.environ["casting_assistant"]
+casting_director = os.environ["casting_director"]
+executive_producer = os.environ["executive_producer"]
+
 
 """
 https://capstone-project1.us.auth0.com/authorize?audience=cast&response_type=token&client_id=a4ZqMlAKmxWb2I81gUQqzCVbLc1iuu37&redirect_uri=http://localhost:8080/login-results

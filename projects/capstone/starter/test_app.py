@@ -46,9 +46,9 @@ class CapstoneTestCase(unittest.TestCase):
             "movie_id": 20,
         }
 
-        self.casting_assistant = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjFfY292YUo5bG9QNEx6OTJsbTM1MiJ9.eyJpc3MiOiJodHRwczovL2NhcHN0b25lLXByb2plY3QxLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZmFiMGE0NzlhYjJkMDAwNzZmNWIyZjUiLCJhdWQiOiJjYXN0IiwiaWF0IjoxNjA1MjQ0NTA3LCJleHAiOjE2MDUzMzA5MDcsImF6cCI6ImE0WnFNbEFLbXhXYjJJODFnVVFxekNWYkxjMWl1dTM3Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJ2aWV3OmFjdG9yIiwidmlldzptb3ZpZSJdfQ.W9PVLVizkEmbJQ67inMoO0U185x8unC293qrw06fcxKWr0Fw0b6Utm2AyGNFCrlOUQQ471mX5pE38Rn9u4b-qYyXndpSfGUCy1G_U9SjnLIsYNbNDRu3HU9LsV3Uj-0n_8TemWt8GyfWKFeHe6uOjVwmYwQUAbQfJ1lR6jazMLd3S0iXZhPcqpCzikT9xsLGlqE7wUERyrKKWyl8QCuMlgGsjR9V63xwK_i06fdbRQOBTgOEHMZ94PTRritf5yxx9b73O9d9L4gN-h5qxwCHC8-5gdCGYE48D3o3eovwqtriYObD7ddvUvDOyb74yG5F9V6h1jsim7IcDVq7RfK55w"
-        self.casting_director = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjFfY292YUo5bG9QNEx6OTJsbTM1MiJ9.eyJpc3MiOiJodHRwczovL2NhcHN0b25lLXByb2plY3QxLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZmFiMDkxZTc1ODg0NzAwNjkyOWIzYzAiLCJhdWQiOiJjYXN0IiwiaWF0IjoxNjA1MjQ0NDcwLCJleHAiOjE2MDUzMzA4NzAsImF6cCI6ImE0WnFNbEFLbXhXYjJJODFnVVFxekNWYkxjMWl1dTM3Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwicGF0Y2g6YWN0b3IiLCJwYXRjaDptb3ZpZSIsInBvc3Q6YWN0b3IiLCJ2aWV3OmFjdG9yIiwidmlldzptb3ZpZSJdfQ.IgO559gu1KGO0bo4RPXYCVlyNeod8BrYar7f8u3rL1SfkFgKKY6mBbRjADlkYHRyMtek0vzUCVuFLO1OoHPwPTkIrfIjem3TqFOe-DxXmyXo9PqbbeR0ZJo6afdF85aWKU_BJvb1wSkiKrxHsAGd6uMzvDGiHAbvdk-ilWbAFgTSzlnara9xmwvTvxz3NUoZjnA7GjhuRUsulaSv1K16uUKwCAVxOn3PCAcY6CQVVTNv9lD_2iKu9xCFG4SImN1NnZTQ23j_NjFb4t-WoDC0bE6j9q1r3SEbnXQdbLq1dSCG9C-S6jOYvoV3up1f7tYg7PtA0y7uWckyQ9j33bfo8Q"
-        self.executive_producer = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjFfY292YUo5bG9QNEx6OTJsbTM1MiJ9.eyJpc3MiOiJodHRwczovL2NhcHN0b25lLXByb2plY3QxLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZmFiMDQ0ODFhMzBhZjAwNmYzMTM4MjEiLCJhdWQiOiJjYXN0IiwiaWF0IjoxNjA1MjQ0MzgzLCJleHAiOjE2MDUzMzA3ODMsImF6cCI6ImE0WnFNbEFLbXhXYjJJODFnVVFxekNWYkxjMWl1dTM3Iiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3IgIiwiZGVsZXRlOmFjdG9ycyIsImRlbGV0ZTptb3ZpZSIsInBhdGNoOmFjdG9yIiwicGF0Y2g6bW92aWUiLCJwb3N0OmFjdG9yIiwicG9zdDptb3ZpZSIsInZpZXc6YWN0b3IiLCJ2aWV3Om1vdmllIl19.YZH6JGKSiW3uMkf5RiHxAUqYy1sVd7uFyIPLBO8grnBnM2eBrTAiRu1qcVzJsPhxWxHfneL0hrxWEu1qsVHf6GV8uFRJVLbOyG5EF3MZNGYyfuATkMP_PNcMuNxBQfr5aewEyehXbfUxfsQHIGe4WD6DXlhciUU5CMs4fbavCVgF1Mjv-ebuQxx_g6UgAIHlpOXxTHnCcT53PDCIB7Nl6-BXWbI0DbM46LUK7v8zL3c_DnARBcBUqpmqQPpRRXWzD2pVHFMKmy9iikUGKiiAhvYQu7rMeCxM_vUjLIq4ra7WlCEOdvSzfZCm2DStGw9QBxZdrGR-KSDHR2m73TdK5w"
+        self.casting_assistant = os.environ["casting_assistant"]
+        self.casting_director = os.environ["casting_director"]
+        self.executive_producer = os.environ["executive_producer"]
 
     def tearDown(self):
         """Executed after reach test"""
@@ -225,7 +225,8 @@ class CapstoneTestCase(unittest.TestCase):
     def test_create_movies(self):
         auth_header = {"Authorization": "Bearer " + self.executive_producer}
 
-        res = self.client().post(f"/movies", json=self.new_movie, headers=auth_header)
+        res = self.client().post(f"/movies",
+                                 json=self.new_movie, headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data["success"])
@@ -233,7 +234,8 @@ class CapstoneTestCase(unittest.TestCase):
     def test_404_create_movies(self):
         auth_header = {"Authorization": "Bearer " + self.executive_producer}
 
-        res = self.client().post(f"/movies/", json=self.fail_movie, headers=auth_header)
+        res = self.client().post(f"/movies/",
+                                 json=self.fail_movie, headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 404)
         self.assertFalse(data["success"])
@@ -241,7 +243,8 @@ class CapstoneTestCase(unittest.TestCase):
     def test_404_create_movie_fail(self):
         auth_header = {"Authorization": "Bearer " + self.casting_assistant}
 
-        res = self.client().post(f"/movies/", json=self.new_movie, headers=auth_header)
+        res = self.client().post(f"/movies/",
+                                 json=self.new_movie, headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 404)
         self.assertFalse(data["success"])
@@ -249,7 +252,8 @@ class CapstoneTestCase(unittest.TestCase):
     def test_404_create_movie_fail(self):
         auth_header = {"Authorization": "Bearer " + self.casting_director}
 
-        res = self.client().post(f"/movies/", json=self.new_movie, headers=auth_header)
+        res = self.client().post(f"/movies/",
+                                 json=self.new_movie, headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 404)
         self.assertFalse(data["success"])
@@ -257,7 +261,8 @@ class CapstoneTestCase(unittest.TestCase):
     def test_create_actor(self):
         auth_header = {"Authorization": "Bearer " + self.executive_producer}
 
-        res = self.client().post(f"/actors", json=self.new_actor, headers=auth_header)
+        res = self.client().post(f"/actors",
+                                 json=self.new_actor, headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data["success"])
@@ -265,7 +270,8 @@ class CapstoneTestCase(unittest.TestCase):
     def test_422_create_actor_fail(self):
         auth_header = {"Authorization": "Bearer " + self.executive_producer}
 
-        res = self.client().post(f"/actors", json=self.fail_actor, headers=auth_header)
+        res = self.client().post(f"/actors",
+                                 json=self.fail_actor, headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 422)
         self.assertFalse(data["success"])
@@ -273,7 +279,8 @@ class CapstoneTestCase(unittest.TestCase):
     def test_create_actor(self):
         auth_header = {"Authorization": "Bearer " + self.casting_director}
 
-        res = self.client().post(f"/actors", json=self.new_actor, headers=auth_header)
+        res = self.client().post(f"/actors",
+                                 json=self.new_actor, headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertTrue(data["success"])
@@ -281,7 +288,8 @@ class CapstoneTestCase(unittest.TestCase):
     def test_create_actor_fail(self):
         auth_header = {"Authorization": "Bearer " + self.casting_assistant}
 
-        res = self.client().post(f"/actors", json=self.new_actor, headers=auth_header)
+        res = self.client().post(f"/actors",
+                                 json=self.new_actor, headers=auth_header)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 401)
 
